@@ -1,8 +1,17 @@
-# React + Vite
+# Memory Card App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Objective
 
-Currently, two official plugins are available:
+Create a memory card application using React. The main focus of the application is to utilize the following concepts:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create and setup a new React Project utilizing Vite
+- Manage and utilize states
+- Fetch and use data from an external API.
+
+## How to Play
+
+- Start the game by clicking on a card
+- Earn points by clicking cards that have NOT yet be selected
+- The game ends when the user selects a card already selected
+
+\*Highest score is kept until the user closes the browser

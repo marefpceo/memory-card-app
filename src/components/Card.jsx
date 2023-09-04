@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import '../styles/Card.css';
 
-function Card({ name, image, id }) {
+function Card({ name, image, id, handleClick }) {
   return (
-    <div className='card' id={'card-' + id}>
+    <div className='card' id={'card-' + id} onClick={handleClick}>
       <div className='card-image'>
         <img src={image} alt='' className='character-image' />
       </div>
@@ -18,6 +18,7 @@ Card.propTypes = {
   name: PropTypes.string,
   image: PropTypes.string,
   id: PropTypes.string,
+  handleClick: PropTypes.func,
 };
 
 export default Card;

@@ -5,6 +5,7 @@ import Card from './Card';
 
 function App() {
   const [data, setData] = useState([]);
+  const [score, setScore] = useState(0);
 
   const shuffleCards = (inputArray) => {
     return inputArray
@@ -13,8 +14,24 @@ function App() {
       .map((a) => a.value);
   };
 
-  function handleClick() {
-    setData(shuffleCards(data));
+  function handleClick(e) {
+    const selectedTarget = e.target.parentElement.parentElement.id;
+    const selectedId = selectedTarget.replace('card-', '');
+
+    setData(
+      shuffleCards(
+        data.map((card) => {
+          if (card.id.toString() === selectedId) {
+            return { ...card, checked: true };
+          } else {
+            return card;
+          }
+        }),
+      ),
+    );
+
+    // setData(shuffleCards(data));
+    console.log(selectedId);
   }
 
   useEffect(() => {
@@ -31,6 +48,7 @@ function App() {
           lName: json[i].name.last,
           image: json[i].images.main,
           id: json[i].id,
+          checked: false,
         };
       }
       setData(shuffleCards(temp));
@@ -50,6 +68,7 @@ function App() {
             <Card
               handleClick={handleClick}
               key={character.id}
+              id={character.id}
               name={character.fName + ' ' + character.lName}
               image={character.image}
             />

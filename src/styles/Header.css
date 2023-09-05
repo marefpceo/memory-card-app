@@ -41,10 +41,3 @@ header {
     align-items: center;
   }
 }
-
-/* Tablet Display */
-@media only screen and (min-width: 650px) {
-  header {
-    flex-direction: row;
-  }
-}

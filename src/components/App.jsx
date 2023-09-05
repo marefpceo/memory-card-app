@@ -37,9 +37,11 @@ function App() {
     }
     setScore(0);
     setData(
-      data.map((card) => {
-        return { ...card, checked: false };
-      }),
+      shuffleCards(
+        data.map((card) => {
+          return { ...card, checked: false };
+        }),
+      ),
     );
   }
 

@@ -6,6 +6,7 @@ import Card from './Card';
 function App() {
   const [data, setData] = useState([]);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   const shuffleCards = (inputArray) => {
     return inputArray
@@ -13,6 +14,20 @@ function App() {
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value);
   };
+
+  function gameOver() {
+    if (bestScore < score) {
+      setBestScore(score);
+    }
+
+    setScore(0);
+
+    setData(
+      data.map((card) => {
+        return { ...card, checked: false };
+      }),
+    );
+  }
 
   function handleClick(e) {
     const selectedTarget = e.target.parentElement.parentElement.id;
@@ -22,7 +37,14 @@ function App() {
       shuffleCards(
         data.map((card) => {
           if (card.id.toString() === selectedId) {
-            return { ...card, checked: true };
+            if (card.checked === true) {
+              alert('Game Over');
+              gameOver();
+              return card;
+            } else {
+              setScore(score + 1);
+              return { ...card, checked: true };
+            }
           } else {
             return card;
           }
@@ -30,7 +52,6 @@ function App() {
       ),
     );
 
-    // setData(shuffleCards(data));
     console.log(selectedId);
   }
 
@@ -61,7 +82,7 @@ function App() {
 
   return (
     <div className='container'>
-      <Header />
+      <Header bestScore={bestScore} score={score} />
       <div className='card-area'>
         {data.map((character) => {
           return (

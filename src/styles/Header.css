@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2em 0;
+  padding: 2em;
 }
 
 .logo img {
@@ -18,7 +18,7 @@ header {
   background-color: var(--color-1);
   border: 2px solid var(--color-3);
   border-radius: 7px;
-  width: 25%;
+  min-width: 25%;
   padding: 0 1.5rem;
   text-align: start;
 }
@@ -32,4 +32,19 @@ header {
 .score {
   display: flex;
   justify-content: space-between;
+}
+
+/* Mobile Display */
+@media only screen and (max-width: 649px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Tablet Display */
+@media only screen and (min-width: 650px) {
+  header {
+    flex-direction: row;
+  }
 }

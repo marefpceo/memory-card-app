@@ -4,9 +4,9 @@
   justify-content: center;
   align-items: center;
   width: 98%;
-  min-height: 75%;
+  height: 70%;
   position: absolute;
-  top: 20%;
+  top: 25%;
   left: 1%;
   z-index: 99;
   background-color: var(--color-3);
@@ -18,7 +18,7 @@
 .modal-main {
   font-size: 1.5rem;
   line-height: 4rem;
-  max-width: 40%;
+  max-width: 70%;
   padding: 2rem;
   border: 2px solid var(--color-4);
   border-radius: 8px;
@@ -45,4 +45,17 @@
 
 #modal-button:active {
   transform: scale(1);
+}
+
+/* Mobile Display */
+@media only screen and (max-width: 842px) {
+  .modal {
+    height: 100%;
+    top: 0;
+  }
+  .modal-main {
+    max-width: 80%;
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
 }

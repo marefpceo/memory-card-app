@@ -15,6 +15,7 @@ function App() {
   function handleButtonClick() {
     if (toggle === 0) {
       document.querySelector('.modal').style.display = 'none';
+      document.querySelector('.card-area').style.display = 'grid';
       setToggle(1);
       setMessage(endGame);
     } else {

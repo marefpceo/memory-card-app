@@ -12,9 +12,13 @@
 }
 
 .card-area {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: none;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, max(210px, 100%/6)), 1fr)
+  );
   justify-items: center;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 2rem auto;
+  max-width: 80%;
 }

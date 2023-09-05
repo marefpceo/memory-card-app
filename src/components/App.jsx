@@ -1,12 +1,26 @@
 import { useEffect, useState } from 'react';
 import '../styles/App.css';
-import Header from './Header';
-import Card from './Card';
+import Header from './Header.jsx';
+import Card from './Card.jsx';
+import Modal from './Modal.jsx';
+import { startGame, endGame } from './Data';
 
 function App() {
   const [data, setData] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [message, setMessage] = useState(startGame);
+  const [toggle, setToggle] = useState(0);
+
+  function handleButtonClick() {
+    if (toggle === 0) {
+      document.querySelector('.modal').style.display = 'none';
+      setToggle(1);
+      setMessage(endGame);
+    } else {
+      document.querySelector('.modal').style.display = 'none';
+    }
+  }
 
   function shuffleCards(inputArray) {
     return inputArray
@@ -16,6 +30,7 @@ function App() {
   }
 
   function gameOver() {
+    document.querySelector('.modal').style.display = 'flex';
     if (bestScore < score) {
       setBestScore(score);
     }
@@ -27,7 +42,7 @@ function App() {
     );
   }
 
-  function handleClick(e) {
+  function handleCardClick(e) {
     const selectedTarget = e.target.parentElement.parentElement.id;
     const selectedId = selectedTarget.replace('card-', '');
     let gamePlay = true;
@@ -78,16 +93,15 @@ function App() {
     getData();
   }, []);
 
-  console.log(data);
-
   return (
     <div className='container'>
       <Header bestScore={bestScore} score={score} />
+      <Modal text={message} handleButtonClick={handleButtonClick} />
       <div className='card-area'>
         {data.map((character) => {
           return (
             <Card
-              handleClick={handleClick}
+              handleCardClick={handleCardClick}
               key={character.id}
               id={character.id}
               name={character.fName + ' ' + character.lName}

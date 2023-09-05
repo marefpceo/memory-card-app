@@ -8,20 +8,18 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
-  const shuffleCards = (inputArray) => {
+  function shuffleCards(inputArray) {
     return inputArray
       .map((a) => ({ sort: Math.random(), value: a }))
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value);
-  };
+  }
 
   function gameOver() {
     if (bestScore < score) {
       setBestScore(score);
     }
-
     setScore(0);
-
     setData(
       data.map((card) => {
         return { ...card, checked: false };
@@ -32,15 +30,15 @@ function App() {
   function handleClick(e) {
     const selectedTarget = e.target.parentElement.parentElement.id;
     const selectedId = selectedTarget.replace('card-', '');
+    let gamePlay = true;
 
     setData(
       shuffleCards(
         data.map((card) => {
           if (card.id.toString() === selectedId) {
             if (card.checked === true) {
-              alert('Game Over');
-              gameOver();
-              return card;
+              gamePlay = false;
+              return;
             } else {
               setScore(score + 1);
               return { ...card, checked: true };
@@ -52,7 +50,9 @@ function App() {
       ),
     );
 
-    console.log(selectedId);
+    if (gamePlay === false) {
+      gameOver();
+    }
   }
 
   useEffect(() => {

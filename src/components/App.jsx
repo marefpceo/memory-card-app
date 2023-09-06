@@ -20,6 +20,7 @@ function App() {
       setMessage(endGame);
     } else {
       document.querySelector('.modal').style.display = 'none';
+      document.querySelector('.card-area').style.display = 'grid';
     }
   }
 
@@ -32,6 +33,7 @@ function App() {
 
   function gameOver() {
     document.querySelector('.modal').style.display = 'flex';
+    document.querySelector('.card-area').style.display = 'none';
     if (bestScore < score) {
       setBestScore(score);
     }
